@@ -6,20 +6,11 @@ A Data Validation System For Nodejs And Browser.
 
 Basically, this package provides a simple way to validate values regardless where it comes from, you pass the value, value props and validation rules and that's it.
 
-## Installation
-
-`yarn add @mongez/validator`
-
-Or
-
-`npm i @mongez/validator`
-
 ## Table of contents
-
 - [Mongez Validator](#mongez-validator)
   - [Why?](#why)
-  - [Installation](#installation)
   - [Table of contents](#table-of-contents)
+  - [Installation](#installation)
   - [Usage](#usage)
   - [validate function](#validate-function)
   - [Validation fails](#validation-fails)
@@ -36,6 +27,7 @@ Or
     - [Match Element Rule](#match-element-rule)
   - [Entire rules list](#entire-rules-list)
   - [Rules Ordering](#rules-ordering)
+  - [Creating custom rules](#creating-custom-rules)
   - [Validation messages](#validation-messages)
   - [Overriding error messages](#overriding-error-messages)
   - [Multiple Errors per one validation](#multiple-errors-per-one-validation)
@@ -45,6 +37,14 @@ Or
   - [Resetting Validator](#resetting-validator)
   - [Destroying Validator](#destroying-validator)
   - [TODO](#todo)
+
+## Installation
+
+`yarn add @mongez/validator`
+
+Or
+
+`npm i @mongez/validator`
 
 ## Usage
 
@@ -549,6 +549,54 @@ validate(value, props, rules);
 const rules2 = [maxLengthRule, minLengthRule];
 
 validate(value, props, rules);
+```
+
+## Creating custom rules
+
+You may also define your own rules based on your needs, let's try creating a new rule.
+
+> The following code snippet is written in Typescript for better illustration.
+
+```ts
+// valid-username.ts
+
+import { Rule, RuleResponse } from '@mongez/validator';
+
+const pattern = /^[a-zA-Z]+[a-zA-Z0-9]+$/;
+
+const rule: Rule = {    
+  rule: "username",
+  requiresValue: true,
+  evaluate: (value, props): RuleResponse => {
+      const response: RuleResponse = {          
+        errorType: "username",
+        hasError: pattern.test(value) === false,
+        errorMessage: trans("validation.invalidUsername"),
+      };
+
+      return response;
+  }
+};
+
+export default rule;
+```
+
+We create a rule that validates the value against pattern that accepts username starts with English letter(s) followed by English letters or digits.
+
+Now we can use it in our validator.
+
+```ts
+import usernameRule from './valid-username';
+import { validate } from '@mongez/validator';
+
+const props = {
+    username: true,
+};
+
+const rules = [usernameRule];
+
+console.log(validate('myNameIsHasan', props, rules).passes()); // true
+console.log(validate('12awa', props, rules).passes()); // false
 ```
 
 ## Validation messages

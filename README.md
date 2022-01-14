@@ -217,7 +217,7 @@ Let's understand the previous criteria list to understand how rules work.
 
 The `emailRule` validates the given value to be **valid email** pattern.
 
-- Required Prop: `email`
+- Required Prop: `type` to be `email`
 - Requires a value to validate: `true`
 - Evaluate: value is not a valid email address
 - Error Type: `email`
@@ -231,7 +231,7 @@ import { validate, emailRule } from '@mongez/validator';
 const value = 'some-invalid-mail';
 
 const props = {
-    email: true,
+    type: 'email',
 };
 
 const rules = [emailRule];
@@ -259,7 +259,7 @@ import { validate, urlRule } from '@mongez/validator';
 const value = 'some-invalid-mail';
 
 const props = {
-    url: true,
+    type: 'url',
 };
 
 const rules = [urlRule];

@@ -607,12 +607,15 @@ Just import the translation list you need and add it to `Mongez localization`.
 
 ```ts
 import { extend } from '@mongez/localization';
-import { enTranslation } from '@mongez/validator';
+import { enTranslation, arTranslation } from '@mongez/validator';
 
 extend('en', enTranslation);
+extend('ar', arTranslation);
 ```
 
 Now translation messages will be returned directly, here is the current translation messages for English language.
+
+> Available translations are `enTranslation` for English and `arTranslation` for Arabic.
 
 ```ts
 const translation = {

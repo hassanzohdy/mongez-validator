@@ -628,7 +628,7 @@ const translation = {
     match: "This field is not matched with %s",
     length: "This field length must be %d characters",
     minLength: "This field should have at least %d characters",
-    maxLength: "This field should have can not be more than %d characters",
+    maxLength: "This field can not be more than %d characters",
     pattern: "This field is not matching the pattern",
   },
 }

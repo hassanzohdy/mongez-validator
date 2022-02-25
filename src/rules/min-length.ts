@@ -7,9 +7,13 @@ export default {
   evaluate: function (value, props): RuleResponse {
     const minLength = props.minLength;
 
+    if (!Array.isArray(value)) {
+      value = String(value);
+    }
+
     return {
       errorType: "minLength",
-      hasError: String(value).length < minLength,
+      hasError: value.length < minLength,
       errorMessage: trans("validation.minLength", minLength),
     } as RuleResponse;
   },

@@ -7,6 +7,7 @@ A Data Validation System For Nodejs And Browser.
 Basically, this package provides a simple way to validate values regardless where it comes from, you pass the value, value props and validation rules and that's it.
 
 ## Table of contents
+
 - [Mongez Validator](#mongez-validator)
   - [Why?](#why)
   - [Table of contents](#table-of-contents)
@@ -36,6 +37,7 @@ Basically, this package provides a simple way to validate values regardless wher
   - [Validator Events](#validator-events)
   - [Resetting Validator](#resetting-validator)
   - [Destroying Validator](#destroying-validator)
+  - [Change log](#change-log)
   - [TODO](#todo)
 
 ## Installation
@@ -811,6 +813,11 @@ validator.validate();
 
 validator.destroy(); // clears events subscriptions and resets validator
 ```
+
+## Change log
+
+- V1.0.11 (25 Feb 2022)
+  - `minLength` `maxLength` `length` rules now validate arrays.
 
 ## TODO
 

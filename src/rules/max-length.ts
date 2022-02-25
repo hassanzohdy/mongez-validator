@@ -7,9 +7,13 @@ export default {
   evaluate: function (value, props): RuleResponse {
     const maxLength = props.maxLength;
 
+    if (!Array.isArray(value)) {
+      value = String(value);
+    }
+
     return {
       errorType: "maxLength",
-      hasError: String(value).length > maxLength,
+      hasError: value.length > maxLength,
       errorMessage: trans("validation.maxLength", maxLength),
     } as RuleResponse;
   },

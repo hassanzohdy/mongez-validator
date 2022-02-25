@@ -6,8 +6,13 @@ export default {
   requiresValue: true,
   evaluate: function (value, props): RuleResponse {
     const length = props.length;
+
+    if (!Array.isArray(value)) {
+      value = String(value);
+    }
+
     return {
-      hasError: String(value).length !== length,
+      hasError: value.length !== length,
       errorMessage: trans("validation.length", length),
       errorType: "length",
     } as RuleResponse;

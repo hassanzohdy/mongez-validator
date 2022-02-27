@@ -1,6 +1,6 @@
 {
     "name": "@mongez/validator",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "description": "A Data Validation System For Nodejs And Browser.",
     "main": "src/index.ts",
     "dependencies": {

@@ -24,6 +24,9 @@ Basically, this package provides a simple way to validate values regardless wher
     - [Min Length Rule](#min-length-rule)
     - [Length Rule](#length-rule)
     - [Max Length Rule](#max-length-rule)
+    - [Number Rule](#number-rule)
+    - [Integer Rule](#integer-rule)
+    - [Float Rule](#float-rule)
     - [Pattern Rule](#pattern-rule)
     - [Match Element Rule](#match-element-rule)
   - [Entire rules list](#entire-rules-list)
@@ -422,6 +425,97 @@ console.log(validate('tour', props, rules).passes()); // true
 console.log(validate('two', props, rules).passes()); // true
 ```
 
+### Number Rule
+
+The `numberRule` validates the given value as its being a numeric value, regardless its type either string or number.
+
+- Required Prop: `type` to be `number`
+- Requires a value to validate: `true`
+- Evaluate: The value wether a string or number to be valid number.
+- Error Type: `number`
+- Error Message: `validation.number`
+
+An example of usage
+
+```ts
+import { validate, numberRule } from '@mongez/validator';
+
+const value = '12';
+
+const props = {
+    type: 'number',
+};
+
+const rules = [numberRule];
+
+console.log(validate(value, props, rules).passes()); // true
+console.log(validate('12.5', props, rules).passes()); // true
+console.log(validate(12, props, rules).passes()); // true
+console.log(validate(12.5, props, rules).passes()); // true
+console.log(validate('12string', props, rules).passes()); // false
+```
+
+### Integer Rule
+
+The `integerRule` validates the given value as its being an integer value, regardless its type either string or number.
+
+- Required Prop: `type` to be `integer`
+- Requires a value to validate: `true`
+- Evaluate: The value wether a string or number to be valid integer number.
+- Error Type: `integer`
+- Error Message: `validation.integer`
+
+An example of usage
+
+```ts
+import { validate, integerRule } from '@mongez/validator';
+
+const value = '12';
+
+const props = {
+    type: 'integer',
+};
+
+const rules = [integerRule];
+
+console.log(validate(value, props, rules).passes()); // true
+console.log(validate(12, props, rules).passes()); // true
+console.log(validate(12.5, props, rules).passes()); // false
+console.log(validate('12.5', props, rules).passes()); // true
+console.log(validate('12string', props, rules).passes()); // false
+```
+
+### Float Rule
+
+The `floatRule` validates the given value as its being an float value, regardless its type either string or number.
+
+- Required Prop: `type` to be `float`
+- Requires a value to validate: `true`
+- Evaluate: The value wether a string or number to be valid float number.
+- Error Type: `float`
+- Error Message: `validation.float`
+
+> Please note that any integers will be validated as invalid float number, use `numberRule` if you would like to accept both integers and floats.
+
+An example of usage
+
+```ts
+import { validate, floatRule } from '@mongez/validator';
+
+const value = '12.5';
+
+const props = {
+    type: 'float',
+};
+
+const rules = [floatRule];
+
+console.log(validate(value, props, rules).passes()); // true
+console.log(validate(12.5, props, rules).passes()); // true
+console.log(validate(12, props, rules).passes()); // false
+console.log(validate('12.5string', props, rules).passes()); // false
+```
+
 ### Pattern Rule
 
 The `patternRule` validates the given value pattern against the given `pattern` prop.
@@ -816,6 +910,10 @@ validator.destroy(); // clears events subscriptions and resets validator
 
 ## Change log
 
+- V1.0.12 (27 Feb 2022)
+  - Added [Number Rule](#number-rule).
+  - Added [Integer Rule](#integer-rule).
+  - Added [Float Rule](#float-rule).
 - V1.0.11 (25 Feb 2022)
   - `minLength` `maxLength` `length` rules now validate arrays.
 

@@ -10,6 +10,9 @@ const translation = {
     minLength: "This field should have at least %d characters",
     maxLength: "This field can not be more than %d characters",
     pattern: "This field is not matching the pattern",
+    number: "This field is accept only numbers",
+    integer: "This field accepts only integers",
+    float: "This field accepts only float digits",
   },
 };
 

@@ -13,7 +13,7 @@ export default {
 
     return {
       hasError: value.length !== length,
-      errorMessage: trans("validation.length", length),
+      errorMessage: trans("validation.length", { length }),
       errorType: "length",
     } as RuleResponse;
   },

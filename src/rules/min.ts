@@ -10,7 +10,7 @@ export default {
     return {
       errorType: "min",
       hasError: Number(value) < min,
-      errorMessage: trans("validation.min", min),
+      errorMessage: trans("validation.min", { length: min }),
     } as RuleResponse;
   },
 } as Rule;

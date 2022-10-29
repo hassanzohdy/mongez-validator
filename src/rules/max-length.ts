@@ -14,7 +14,7 @@ export default {
     return {
       errorType: "maxLength",
       hasError: value.length > maxLength,
-      errorMessage: trans("validation.maxLength", maxLength),
+      errorMessage: trans("validation.maxLength", { length: maxLength }),
     } as RuleResponse;
   },
 } as Rule;

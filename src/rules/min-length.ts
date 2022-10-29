@@ -14,7 +14,7 @@ export default {
     return {
       errorType: "minLength",
       hasError: value.length < minLength,
-      errorMessage: trans("validation.minLength", minLength),
+      errorMessage: trans("validation.minLength", { length: minLength }),
     } as RuleResponse;
   },
 } as Rule;

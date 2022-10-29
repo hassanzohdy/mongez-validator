@@ -9,7 +9,7 @@ export default {
     return {
       errorType: "max",
       hasError: Number(value) > max,
-      errorMessage: trans("validation.max", max),
+      errorMessage: trans("validation.max", { length: max }),
     } as RuleResponse;
   },
 } as Rule;

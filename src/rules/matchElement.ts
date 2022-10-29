@@ -13,10 +13,9 @@ export default {
     return {
       errorType: "matchElement",
       hasError: matchingInput && matchingInput.value !== String(value),
-      errorMessage: trans(
-        "validation.matchElement",
-        trans(matchText || matchingInputId)
-      ),
+      errorMessage: trans("validation.matchElement", {
+        field: trans(matchText || matchingInputId),
+      }),
     } as RuleResponse;
   },
 } as Rule;

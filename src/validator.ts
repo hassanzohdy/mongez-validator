@@ -1,6 +1,5 @@
-import Is from "@mongez/supportive-is";
-import { Random } from "@mongez/reinforcements";
 import events, { EventSubscription } from "@mongez/events";
+import Is from "@mongez/supportive-is";
 import {
   DynamicObject,
   Rule,
@@ -12,11 +11,13 @@ import {
   ValidationEventType,
 } from "./types";
 
+const randomString = () => Math.random().toString(36).substring(7);
+
 export default class Validator implements Validateable {
   protected isValid: boolean = true;
   protected errorMessage: string = "";
   protected errorType: string = "";
-  protected validationEventNamespace: string = `validation.${Random.string()};`;
+  protected validationEventNamespace: string = `validation.${randomString()};`;
   protected errorReturnMode: ValidationErrorReturn = "first";
   protected errorsList: DynamicObject = {};
   protected validationResults: RuleResponse[] = [];
